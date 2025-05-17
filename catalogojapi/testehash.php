@@ -1,4 +1,6 @@
 <?php
+// Isso aqui vai ser usado no login
+
 $senhaDigitada = "senha";
 echo $senhaDigitada . "<br><br>";
 
