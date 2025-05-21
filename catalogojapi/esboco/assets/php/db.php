@@ -1,3 +1,4 @@
 <?php
-    $conexao = mysqli_connect("localhost", "root", "","contatos") or die ("Falha na conexão");
+    $connection = mysqli_connect("localhost", "root", "","catalogojapi_db") or die ("Falha na conexão");
+    mysqli_set_charset($connection, "utf8");
 ?>

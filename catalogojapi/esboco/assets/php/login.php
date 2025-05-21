@@ -3,24 +3,42 @@
     
     require 'db.php';
 
-    $email = $_POST["email"];
-    $senha = $_POST["senha"];
+    $useremail = $_POST["useremail"];
+    $userpassword = $_POST["userpassword"];
     
-    $result_query = mysqli_query($conexao, "SELECT * FROM usuarios WHERE login='$email' AND senha ='$senha'; ");
-    $qtd_linhas = mysqli_num_rows($res);
+    $query = mysqli_query($connection, "SELECT * FROM users WHERE Email='$useremail'");
     
-    mysqli_close($conexao);
-
-    if($qtd_linhas == 0)
+    if(mysqli_num_rows($query) === 0)
     { 
-        $_SESSION ["validado"] = false;
-        header("Location: index.html");
+        $_SESSION ["validation"] = false;
+        $_SESSION['register_error'] = "Usuário não encontrado";
+        header("Location: ../../pages/auth.php?login");
     }
     else 
     {
-        $linha = mysqli_fetch_array($res);
-        $_SESSION["nome"] = $linha["nome"];
-        $_SESSION ["validado"] = true;    
-        header("Location: amigos.php");
+        $row = mysqli_fetch_array($query);
+        if (password_verify($userpassword, $row["Password"])) {
+            $_SESSION ["uservalidation"] = true;
+            $_SESSION["userid"] = $row["UserID"];
+            $_SESSION["username"] = $row["Name"];
+            $_SESSION["userprofilephoto"] = $row["ProfilePhoto"];
+            header("Location: ../../index.php");
+
+            $userid = $row["UserID"];
+            $query = mysqli_query($connection, "SELECT * FROM ExpertSpecialization WHERE UserID='$userid'");
+            if(mysqli_num_rows($query) === 0)
+            { 
+                $_SESSION["isexpert"] = false;
+            }
+            else 
+            {
+                $_SESSION["isexpert"] = true;
+            }
+        } else {
+            $_SESSION ["uservalidation"] = false;
+            $_SESSION['register_error'] = "Senha incorreta";
+            header("Location: ../../pages/auth.php?login");
+        }
     }
+    mysqli_close($connection);
 ?>

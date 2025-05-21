@@ -9,6 +9,7 @@ USE catalogojapi_db;
 CREATE TABLE Users (
     UserID VARCHAR(30) NOT NULL UNIQUE, 
     Name VARCHAR(120) NOT NULL,
+    ProfilePhoto VARCHAR(100) DEFAULT 'default.png' NOT NULL,
     Email VARCHAR(255) NOT NULL UNIQUE,
     Password VARCHAR(255) NOT NULL, 
     PRIMARY KEY (UserID)
@@ -94,8 +95,8 @@ CREATE TABLE Comments (
 
 
 -- USUÁRIO PADRÃO:
-INSERT INTO Users (UserID, Name, Email, Password)
-VALUES ('usuario', 'Usuario Exemplo Junior', 'usuario@exemplo.com', '$2y$10$Lsjc3KN.XD8VZHj8Y/qHReh82VXWLoKqnnTkI8pBJuNJM01bPEMbG');
+INSERT INTO Users (UserID, Name, ProfilePhoto, Email, Password)
+VALUES ('usuario', 'Usuario Exemplo Junior','1.png','usuario@exemplo.com', '$2y$10$Lsjc3KN.XD8VZHj8Y/qHReh82VXWLoKqnnTkI8pBJuNJM01bPEMbG');
 
 
 INSERT INTO Users (UserID, Name, Email, Password)
@@ -106,8 +107,8 @@ VALUES ('usuario2', 'Usuario Exemplo Junior 2', 'usuario2@exemplo.com', '$2y$10$
 
 
 -- USUÁRIO ESPECIALISTA:
-INSERT INTO Users (UserID, Name, Email, Password)
-VALUES ('especialista', 'Especialista Exemplo Neto', 'especialista@exemplo.com', '$2y$10$cIz9hs1xuSiOvZsTBiA4vOAxYSvs8Nw4u6kIheNDpDXvG2agNq0PC');
+INSERT INTO Users (UserID, Name, ProfilePhoto, Email, Password)
+VALUES ('especialista', 'Especialista Exemplo Neto', '2.png', 'especialista@exemplo.com', '$2y$10$cIz9hs1xuSiOvZsTBiA4vOAxYSvs8Nw4u6kIheNDpDXvG2agNq0PC');
 INSERT INTO ExpertSpecialization (UserID, LattesCV)
 VALUES ('especialista', 'http://lattes.cnpq.br/3812608000050957');
 
@@ -152,7 +153,7 @@ INSERT INTO Posts (
     '15:05:00'
 );
 INSERT INTO Photos (PostID, ImageName) VALUES
-('1', '01062025_163253_01.png');
+('1', '01062025_163253_1.png');
 
 
 INSERT INTO Posts (
@@ -185,7 +186,7 @@ INSERT INTO Posts (
     '10:32:00'
 );
 INSERT INTO Photos (PostID, ImageName) VALUES
-('2', '01062025_163152_02.png');
+('2', '01062025_163152_2.png');
 
 
 INSERT INTO Posts (
@@ -218,7 +219,7 @@ INSERT INTO Posts (
     '09:15:00'                                
 );
 INSERT INTO Videos (PostID, VideoName) VALUES
-('3', '01062025_093212_03.mp4');
+('3', '01062025_093212_3.mp4');
 
 
 INSERT INTO Posts (
@@ -251,7 +252,7 @@ INSERT INTO Posts (
     '16:40:00'
 );
 INSERT INTO Videos (PostID, VideoName) VALUES
-('4', '01062025_123759_04.mp4');
+('4', '01062025_123759_4.mp4');
 
 
 INSERT INTO Posts (
@@ -284,9 +285,9 @@ INSERT INTO Posts (
     '12:50:00'
 );
 INSERT INTO Photos (PostID, ImageName) VALUES
-('5', '01062025_264323_05.png');
+('5', '01062025_264323_5.png');
 INSERT INTO Videos (PostID, VideoName) VALUES
-('5', '01062025_123456_05.mp4');
+('5', '01062025_123456_5.mp4');
 
 
 
